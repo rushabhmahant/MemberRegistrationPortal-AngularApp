@@ -1,0 +1,2 @@
+# MemberRegistrationPortal-AngularApp
+Frontend app for MemberRegistrationPortal
