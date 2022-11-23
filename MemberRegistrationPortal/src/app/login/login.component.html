@@ -1,0 +1,35 @@
+<div class="container" style="margin-top: 25px;margin-bottom: 25px;text-align: center;">
+    
+    <div class="text-center" style="margin-bottom: 25px;">
+        <h1 style="color: blueviolet;font-size: xx-large;">Login</h1>
+    </div>
+
+<form class="login-form" [formGroup]="loginForm">
+    <mat-form-field class="email-width" appearance="outline">
+      <mat-label>Email Id</mat-label>
+      <input formControlName="memberEmail" matInput placeholder="Enter email">
+      <!-- *ngIf="(loginForm.get('memberEmail')?.hasError('required')) && (loginForm.get('memberEmail')?.touched || loginForm.get('memberEmail')?.dirty)" -->
+      <mat-error *ngIf="loginForm.get('memberEmail')?.hasError('required')">Email id is required</mat-error>
+      <mat-error *ngIf="loginForm.get('memberEmail')?.hasError('pattern')">Please provide a valid email id</mat-error>
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="password-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName="memberPassword" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter pasword">
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+
+        <mat-error *ngIf="loginForm.get('memberPassword')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="loginForm.get('memberPassword')?.hasError('minlength')">Password must contain atleast 8 characters</mat-error>
+        <mat-error *ngIf="!loginForm.get('memberPassword')?.hasError('minlength') && loginForm.get('memberPassword')?.hasError('pattern')">Password must contain atleast one uppercase, one numeric and one special character</mat-error>
+    </mat-form-field>
+
+</form>
+</div>
+
+    <div [align]="'center'">
+        <button mat-raised-button color="primary" (click)="memberLogin()">Login</button>
+    </div>
+    
+    <div class="text-center" style="margin-top: 20px;">
+        <h4>Don't have an account? <a routerLink='/signup'>Sign up</a></h4>
+    </div>
