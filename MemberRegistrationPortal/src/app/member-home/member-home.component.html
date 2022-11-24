@@ -1,1 +1,89 @@
-<p>member-home works!</p>
+<div class="container" style="margin-top: 25px;margin-bottom: 25px;text-align: center;">
+    
+    <div class="text-center" style="margin-bottom: 25px;">
+        <h1 style="color: blueviolet;">Welcome to Member Registration Portal {{member.memberFirstName}}, what would you like to do today?</h1>
+    </div>
+
+    <div [align]="'center'">
+        <button mat-raised-button color="accent" (click)="memberRegister()">Register</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="updateMemberDetails()">Update my details</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="addDependent()">Add Dependent</button>
+    </div>
+
+</div>
+
+
+<div style="margin-top: 20px;margin-bottom: 20px;">
+    <h2 class="text-center" style="color: blueviolet;" *ngIf="member.memberDependents != null && member.memberDependents.length>0">My Dependents:</h2>
+    <div class="container">
+       <h3 *ngIf="!member.memberIsRegistered" style="color: red">Hey {{member.memberFirstName}}, you have not registered yourself yet, please register to add your dependents!</h3>
+       <h3 *ngIf="member.memberIsRegistered && member.memberDependents != null && member.memberDependents.length==0" style="color: red">Hey {{member.memberFirstName}}, you have not added your dependents yet!</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr *ngIf="member.memberDependents != null && member.memberDependents.length>0">
+                <th>Dependent Id</th>
+                <th>Name</th>
+                <th>Date of birth</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dependent of member.memberDependents">
+                <td>{{dependent.dependentId}}</td>
+                <td>{{dependent.dependentName}}</td>
+                <td>{{dependent.dependentDOB}}</td>
+                <td>{{dependent.dependentAge}}</td>
+                <td>
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+                <!-- <td>
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+
+
+
+
+<!-- <div [align]="'center'">
+<h2>My Dependents</h2>
+<ul class="dependents">
+  <li *ngFor="let dependent of member.memberDependents">
+    <button [class.selected]="dependent === selectedDependent" mat-icon-button (click)="onSelect(dependent)">
+      <span class="badge">{{dependent.dependentId}}</span>
+      <span class="name">{{dependent.dependentName}}</span>
+      {{dependent.dependentId}}-{{dependent.dependentName}}
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>delete</mat-icon>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedDependent">
+  <h2>{{selectedDependent.dependentName | uppercase}} Details</h2>
+  <div>id: {{selectedDependent.dependentId}}</div>
+  <div>
+    <label for="dependent-name">Dependent name: </label>
+    <input id="dependent-name" [(ngModel)]="selectedDependent.dependentName" placeholder="name">
+  </div>
+</div>
+
+</div>
+ -->

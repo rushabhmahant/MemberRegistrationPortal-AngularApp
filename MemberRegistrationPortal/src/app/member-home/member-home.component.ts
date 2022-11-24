@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Dependents } from '../dependents';
+import { Member } from '../member';
 
 @Component({
   selector: 'app-member-home',
@@ -7,9 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberHomeComponent implements OnInit {
 
-  constructor() { }
+  member: Member = new Member();
+  selectedDependent!: Dependents;
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+  this.activatedRoute.paramMap.subscribe(params => { 
+    this.member = JSON.parse(params.get("member")!);
+    console.log(this.member.memberId);
+    
+  });
+
+  }
+
+  memberRegister(){
+
+  }
+
+  updateMemberDetails(){
+
+  }
+
+  addDependent(){
+
+  }
+
+  onSelect(dependent: Dependents){
+    this.selectedDependent = dependent;
   }
 
 }
