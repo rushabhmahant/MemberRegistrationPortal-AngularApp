@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
 
     this.memberService.login(this.member).subscribe(
       data => {
-        alert("Member login succesful " + data)
+        console.log(data);
+        alert("Member login succesful! ")
       },
       error => {
         console.log(error);
@@ -58,11 +59,11 @@ export class LoginComponent implements OnInit {
     }
     else{
       alert("Please provide required inputs in correct format!\n\n" + 
-      "Email id should be in the form abc@example.com\n" +
+      "Email id should be in the form abc@example.com.\n" +
       "Password should match the following conditions:\n" +
-      "\u2022 Password should be atleast 8 characters long\n" + 
-      "\u2022 Password should contain atleast one uppercase character\n" +
-      "\u2022 Password should contain atleast one numeric and one special character");
+      "\u2022 Password should be atleast 8 characters long.\n" + 
+      "\u2022 Password should contain atleast one uppercase character.\n" +
+      "\u2022 Password should contain atleast one numeric and one special character.");
       //alert("!!! WARNING !!!\n\nHeader\n\u2022Point1\n\u2022Point2")
     }
 

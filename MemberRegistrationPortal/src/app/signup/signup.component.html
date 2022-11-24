@@ -21,7 +21,7 @@
     <br/>
     <mat-form-field class="section-full" appearance="outline">
         <mat-label>Date of Birth</mat-label>
-        <input formControlName="memberDOB" matInput [matDatepicker]="picker" [max]="maxDate">
+        <input formControlName="memberDOB" matInput [matDatepicker]="picker" [max]="maxDate" readonly>
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -40,7 +40,8 @@
           <input formControlName="memberPassword" matInput [type]="showPassword ? 'text' : 'password'" placeholder="Enter pasword">
           <mat-icon matSuffix (click)="togglePasswordVisibility()">{{showPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="signupForm.get('memberPassword')?.hasError('required')">Password is required</mat-error>
-        <mat-error *ngIf="signupForm.get('memberPassword')?.hasError('pattern')">Please provide a valid password</mat-error>
+          <mat-error *ngIf="signupForm.get('memberPassword')?.hasError('minlength')">Password must contain atleast 8 characters</mat-error>
+          <mat-error *ngIf="!signupForm.get('memberPassword')?.hasError('minlength') && signupForm.get('memberPassword')?.hasError('pattern')">Password must contain atleast one uppercase, one numeric and one special character</mat-error>
     </mat-form-field>
       &nbsp;
     <mat-form-field class="section-half" appearance="outline">
@@ -48,7 +49,8 @@
         <input formControlName="confirmPassword" matInput [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Confirm pasword">
         <mat-icon matSuffix (click)="toggleConfirmPasswordVisibility()">{{showConfirmPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
         <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('required')">Please provide the password again</mat-error>
-        <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('pattern')">Please provide a valid password</mat-error>
+        <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('minlength')">Password must contain atleast 8 characters</mat-error>
+          <mat-error *ngIf="!signupForm.get('confirmPassword')?.hasError('minlength') && signupForm.get('confirmPassword')?.hasError('pattern')">Password must contain atleast one uppercase, one numeric and one special character</mat-error>
     </mat-form-field>
 </form>
 </div>

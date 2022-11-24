@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
 
@@ -21,7 +22,8 @@ export class SignupComponent implements OnInit {
   passwordPattern = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{0,}$/;
   maxDate = new Date();
 
-  constructor(private formBuilder: FormBuilder, private memberService: MemberService) { }
+  constructor(private formBuilder: FormBuilder, private memberService: MemberService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -41,10 +43,12 @@ export class SignupComponent implements OnInit {
       ]],
       memberPassword:['',[
         Validators.required,
+        Validators.minLength(8),
         Validators.pattern(this.passwordPattern)
       ]],
       confirmPassword:['',[
         Validators.required,
+        Validators.minLength(8),
         Validators.pattern(this.passwordPattern)
       ]]
     })
@@ -68,7 +72,9 @@ export class SignupComponent implements OnInit {
     
     this.memberService.signup(this.newMember).subscribe(
       data => {
-        alert("Member signup succesful " + data)
+        console.log(data);
+        alert("Member signup succesful!");
+        this.router.navigate(['/login']);
       },
       error => {
         console.log(error);
@@ -83,12 +89,12 @@ export class SignupComponent implements OnInit {
     }
     else{
       alert("Please provide required inputs in correct format!\n\n" + 
-      "First name and last name should not contain space or special characters\n" +
-      "Email id should be in the form abc@example.com\n" +
+      "First name and last name should not contain space or special characters.\n" +
+      "Email id should be in the form abc@example.com.\n" +
       "Password should match the following conditions:\n" +
-      "\u2022 Password should be atleast 8 characters long\n" + 
-      "\u2022 Password should contain atleast one uppercase character\n" +
-      "\u2022 Password should contain atleast one numeric and one special character");
+      "\u2022 Password should be atleast 8 characters long.\n" + 
+      "\u2022 Password should contain atleast one uppercase character.\n" +
+      "\u2022 Password should contain atleast one numeric and one special character.");
       //alert("!!! WARNING !!!\n\nHeader\n\u2022Point1\n\u2022Point2")
     }
 
