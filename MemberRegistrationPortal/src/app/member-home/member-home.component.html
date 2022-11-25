@@ -5,9 +5,9 @@
     </div>
 
     <div [align]="'center'">
-        <button mat-raised-button color="accent" (click)="memberRegister()">Register</button>&nbsp;
-        <button mat-raised-button color="accent" (click)="updateMemberDetails()">Update my details</button>&nbsp;
-        <button mat-raised-button color="accent" (click)="addDependent()">Add Dependent</button>
+        <button mat-raised-button color="accent" (click)="memberRegister()" [disabled]="member.memberIsRegistered">Register</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="updateMemberDetails()" [disabled]="!member.memberIsRegistered">Update my details</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="addDependent()" [disabled]="!member.memberIsRegistered">Add Dependent</button>
     </div>
 
 </div>
@@ -16,8 +16,10 @@
 <div style="margin-top: 20px;margin-bottom: 20px;">
     <h2 class="text-center" style="color: blueviolet;" *ngIf="member.memberDependents != null && member.memberDependents.length>0">My Dependents:</h2>
     <div class="container">
-       <h3 *ngIf="!member.memberIsRegistered" style="color: red">Hey {{member.memberFirstName}}, you have not registered yourself yet, please register to add your dependents!</h3>
-       <h3 *ngIf="member.memberIsRegistered && member.memberDependents != null && member.memberDependents.length==0" style="color: red">Hey {{member.memberFirstName}}, you have not added your dependents yet!</h3>
+        <marquee  behavior="scroll" direction="left">
+        <h3 *ngIf="!member.memberIsRegistered" style="color: red">Hey {{member.memberFirstName}}, you have not registered yourself yet, please register to add your dependents !</h3>
+        <h3 *ngIf="member.memberIsRegistered && member.memberDependents != null && member.memberDependents.length==0" style="color: red">Hey {{member.memberFirstName}}, you have not added your dependents yet !</h3>
+        </marquee>
     <table class="table table-striped">
         <thead>
             <tr *ngIf="member.memberDependents != null && member.memberDependents.length>0">

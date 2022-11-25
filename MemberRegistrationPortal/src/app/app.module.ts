@@ -20,6 +20,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
+import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -30,7 +33,8 @@ import { MemberHomeComponent } from './member-home/member-home.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    MemberHomeComponent
+    MemberHomeComponent,
+    RegistrationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,8 @@ import { MemberHomeComponent } from './member-home/member-home.component';
     MatInputModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

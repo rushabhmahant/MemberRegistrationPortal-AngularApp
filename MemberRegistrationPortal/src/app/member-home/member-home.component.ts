@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Dependents } from '../dependents';
 import { Member } from '../member';
+import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
 
 @Component({
   selector: 'app-member-home',
@@ -13,7 +15,7 @@ export class MemberHomeComponent implements OnInit {
   member: Member = new Member();
   selectedDependent!: Dependents;
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -26,7 +28,16 @@ export class MemberHomeComponent implements OnInit {
   }
 
   memberRegister(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = false;
 
+    const dialogRef = this.matDialog.open(RegistrationDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      // this.showLoginButton = result;
+      // this.showSignupButton = result;
+    });
   }
 
   updateMemberDetails(){

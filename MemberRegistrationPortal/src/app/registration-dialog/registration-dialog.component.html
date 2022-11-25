@@ -1,0 +1,65 @@
+<h1 mat-dialog-title>Member Registration</h1>
+<div mat-dialog-content>
+<form [formGroup]="registrationForm">
+
+    <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="memberCountry" (selectionChange)="onChangeCountry($event.value)">
+              <mat-option *ngFor="let country of countries; let i = index" value="{{i}}">
+                {{ country.CountryName }}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please select a country</mat-error>
+    </mat-form-field>
+          &nbsp;
+    <mat-form-field appearance="fill">
+            <mat-label>State</mat-label>
+            <mat-select formControlName="memberState" (selectionChange)="onChangeState($event.value)" [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let state of states; let j = index" value="{{j}}">
+                {{ state.StateName }}
+              </mat-option>
+            </mat-select>
+            <mat-error>Please select a state</mat-error>
+    </mat-form-field>
+          
+          <p></p>
+    <!-- <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <mat-select formControlName="city" name="city"  [errorStateMatcher]="matcher">
+              <mat-option *ngFor="let city of cities; let k = index" value="{{k}}">
+                {{ city }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="city.hasError('required')">Please select a city.</mat-error>
+    </mat-form-field> -->
+          
+          
+    <mat-form-field appearance="outline">
+        <mat-label>PAN No.</mat-label>
+        <input formControlName="memberPAN" matInput placeholder="Enter PAN">
+        <mat-hint>PAN must be 12 characters</mat-hint>
+        <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('required')">PAN is required</mat-error>
+        <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('minlength') || registrationForm.get('memberPAN')?.hasError('maxlength')">PAN must contain 12 characters</mat-error>
+        <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('pattern')">PAN should only contain alphabets and numbers</mat-error>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+        <mat-label>Contact No.</mat-label>
+        <input formControlName="memberContactNo" matInput placeholder="Enter PAN">
+        <mat-error>Contact No. is required</mat-error>
+    </mat-form-field>
+    <p></p>
+    <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Address</mat-label>
+        <textarea formControlName="memberAddress" rows="4" matInput placeholder="Enter address"></textarea>
+        <mat-error>Address is required</mat-error>
+    </mat-form-field>
+
+</form>
+
+    <div mat-dialog-action [align]="'end'">
+        <button mat-raised-button color="primary" mat-dialog-close (click)="register()">Register</button>
+        <button style="margin-left: 10px;" mat-raised-button color="warn" (click)="exit()" mat-dialog-close>Exit</button>
+    </div>
+
+</div>
