@@ -39,20 +39,27 @@
         <input formControlName="memberPAN" matInput placeholder="Enter PAN">
         <mat-hint>PAN must be 12 characters</mat-hint>
         <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('required')">PAN is required</mat-error>
-        <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('minlength') || registrationForm.get('memberPAN')?.hasError('maxlength')">PAN must contain 12 characters</mat-error>
-        <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('pattern')">PAN should only contain alphabets and numbers</mat-error>
+        <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('minlength') || registrationForm.get('memberPAN')?.hasError('maxlength'); else patternError">PAN must contain 12 characters</mat-error>
+        <ng-template #patternError>
+            <mat-error *ngIf="registrationForm.get('memberPAN')?.hasError('pattern')">PAN should only contain alphabets and numbers</mat-error>
+        </ng-template>
     </mat-form-field>
     &nbsp;
     <mat-form-field appearance="outline">
         <mat-label>Contact No.</mat-label>
-        <input formControlName="memberContactNo" matInput placeholder="Enter PAN">
-        <mat-error>Contact No. is required</mat-error>
+        <input formControlName="memberContactNo" matInput placeholder="Enter Contact No.">
+        <mat-error *ngIf="registrationForm.get('memberContactNo')?.hasError('required')">Contact No. is required</mat-error>
+        <mat-error *ngIf="registrationForm.get('memberContactNo')?.hasError('minlength') || registrationForm.get('memberContactNo')?.hasError('maxlength'); else contactNoError">Contact No. must contain 10 digits</mat-error>
+        <ng-template #contactNoError>
+            <mat-error *ngIf="registrationForm.get('memberContactNo')?.hasError('pattern')">Please provide valid Contact No.</mat-error>
+        </ng-template>
     </mat-form-field>
     <p></p>
     <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Address</mat-label>
         <textarea formControlName="memberAddress" rows="4" matInput placeholder="Enter address"></textarea>
-        <mat-error>Address is required</mat-error>
+        <mat-error *ngIf="registrationForm.get('memberAddress')?.hasError('required')">Address is required</mat-error>
+        <mat-error *ngIf="registrationForm.get('memberAddress')?.hasError('maxlength')">Address should not exceed 80 characters</mat-error>
     </mat-form-field>
 
 </form>

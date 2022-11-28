@@ -21,4 +21,12 @@ export class MemberService {
     return this.httpClient.post<Member>(this.baseUrl + "/onboard/signup", newMember);
   }
 
+  getMemberById(memberId: string): Observable<Member>{
+    return this.httpClient.get<Member>(this.baseUrl + "/member/" + memberId);
+  }
+
+  register(member: Member): Observable<Member>{
+    return this.httpClient.post<Member>(this.baseUrl + "/member/register", member);
+  }
+
 }

@@ -37,6 +37,10 @@ export class MemberHomeComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
       // this.showLoginButton = result;
       // this.showSignupButton = result;
+      console.log(result)
+      if(result!= null && result!=undefined){
+      this.member = result;
+      }
     });
   }
 

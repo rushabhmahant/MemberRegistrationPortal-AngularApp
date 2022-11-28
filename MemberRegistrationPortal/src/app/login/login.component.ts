@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         console.log(this.member);
         alert("Member login succesful! ");
         // this.router.navigate(['/member-home', this.member.memberId]);
+        sessionStorage.setItem('memberId', this.member.memberId);
         this.router.navigate(['/member-home', JSON.stringify(this.member)]);
       },
       error => {
