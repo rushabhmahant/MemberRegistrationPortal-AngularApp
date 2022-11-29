@@ -16,3 +16,8 @@ h1, h2, h3 {
     height: auto;
     width: 25%;
 }
+
+.member-actions-submit-claim {
+    margin-top: 20px;
+    width: 10%;
+}

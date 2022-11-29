@@ -1,0 +1,70 @@
+<div class="container" style="margin-top: 25px;margin-bottom: 25px;text-align: center;">
+    
+    <div class="text-center" style="margin-bottom: 25px;">
+        <h1 style="color: blueviolet;font-size: xx-large;">Submit Claim</h1>
+    </div>
+
+<form class="claim-form" [formGroup]="claimForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Claim for</mat-label>
+        <mat-select formControlName="dependent" (selectionChange)="onSelectDependent($event.value)">
+          <mat-option value="self">Self</mat-option>
+          <mat-option *ngFor="let dependent of member.memberDependents; let i = index" value="{{dependent.dependentId}}">
+            {{ dependent.dependentId }}
+          </mat-option>
+        </mat-select>
+        <mat-error>Please select an option for submitting claim</mat-error>
+    </mat-form-field>
+    <mat-form-field class="section-half" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput readonly>
+    </mat-form-field>
+      &nbsp;
+    <mat-form-field class="section-half" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" matInput readonly>
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="section-full" appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input formControlName="dateOfBirth" matInput [matDatepicker]="dobpicker" [max]="maxDate" [disabled]="true">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dobpicker></mat-datepicker>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field class="section-full" appearance="outline">
+        <mat-label>Date of Admission</mat-label>
+        <input formControlName="dateOfAdmission" matInput [matDatepicker]="doapicker" [max]="maxDate" readonly>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="doapicker"></mat-datepicker-toggle>
+        <mat-datepicker #doapicker></mat-datepicker>
+        <mat-error *ngIf="claimForm.get('dateOfAdmission')?.hasError('required')">Date of admission is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="section-full" appearance="outline">
+        <mat-label>Date of Discharge</mat-label>
+        <input formControlName="dateOfDischarge" matInput [matDatepicker]="dodpicker" [max]="maxDate" readonly>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="dodpicker"></mat-datepicker-toggle>
+        <mat-datepicker #dodpicker></mat-datepicker>
+        <mat-error *ngIf="claimForm.get('dateOfDischarge')?.hasError('required')">Date of discharge is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="section-half" appearance="outline">
+        <mat-label>Provider Name</mat-label>
+        <input formControlName="providerName" matInput placeholder="Enter Provider Name">
+        <mat-error *ngIf="claimForm.get('providerName')?.hasError('required')">Provider name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="section-half" appearance="outline">
+        <mat-label>Bill Amount</mat-label>
+        <input formControlName="billAmount" matInput placeholder="Enter Bill Amount">
+        <mat-error *ngIf="claimForm.get('billAmount')?.hasError('required')">Bill Amount is required</mat-error>
+        <mat-error *ngIf="claimForm.get('billAmount')?.hasError('pattern')">Please provide a valid bill amount</mat-error>
+    </mat-form-field>
+    
+</form>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="primary" (click)="submitClaim()">Submit Claim</button>
+    <button style="margin-left: 10px;" mat-raised-button color="warn" (click)="exit()" mat-dialog-close>Exit</button>
+</div>   

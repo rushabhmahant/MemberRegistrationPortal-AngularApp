@@ -23,6 +23,7 @@ import { MemberHomeComponent } from './member-home/member-home.component';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
 import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
+import { ClaimDialogComponent } from './claim-dialog/claim-dialog.component';
 
 
 
@@ -36,7 +37,8 @@ import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.co
     SignupComponent,
     MemberHomeComponent,
     RegistrationDialogComponent,
-    DependentDialogComponent
+    DependentDialogComponent,
+    ClaimDialogComponent
   ],
   imports: [
     BrowserModule,
