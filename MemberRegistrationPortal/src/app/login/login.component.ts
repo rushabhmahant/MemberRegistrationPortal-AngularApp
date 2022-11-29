@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
 
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   emailPattern = /^[a-zA-Z0-9]{1}([a-zA-Z0-9._%-]?)+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   passwordPattern = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{0,}$/;
 
-  constructor(private formBuilder: FormBuilder, private memberService: MemberService) { }
+  constructor(private formBuilder: FormBuilder, private memberService: MemberService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -43,8 +45,12 @@ export class LoginComponent implements OnInit {
 
     this.memberService.login(this.member).subscribe(
       data => {
-        console.log(data);
-        alert("Member login succesful! ")
+        this.member = data;
+        console.log(this.member);
+        alert("Member login succesful! ");
+        // this.router.navigate(['/member-home', this.member.memberId]);
+        sessionStorage.setItem('memberId', this.member.memberId);
+        this.router.navigate(['/member-home', JSON.stringify(this.member)]);
       },
       error => {
         console.log(error);

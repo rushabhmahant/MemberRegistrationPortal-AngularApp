@@ -2,6 +2,10 @@
     flex: 1 1 auto;
   }
 
+  h1, h2 {
+    font-family: cursive;
+  }
+
 /* .mat-raised-button.mat-blue {
     color: white;
     background-color: orangered;

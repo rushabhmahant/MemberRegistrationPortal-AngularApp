@@ -19,6 +19,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { MemberHomeComponent } from './member-home/member-home.component';
+import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
+import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
+
 
 
 
@@ -28,7 +33,10 @@ import { SignupComponent } from './signup/signup.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    MemberHomeComponent,
+    RegistrationDialogComponent,
+    DependentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,8 @@ import { SignupComponent } from './signup/signup.component';
     MatInputModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
