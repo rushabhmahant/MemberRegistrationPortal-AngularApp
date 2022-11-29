@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { ClaimDialogComponent } from '../claim-dialog/claim-dialog.component';
 import { DependentDialogComponent } from '../dependent-dialog/dependent-dialog.component';
 import { Dependents } from '../dependents';
 import { Member } from '../member';
@@ -71,15 +72,15 @@ export class MemberHomeComponent implements OnInit {
 
   editDependent(dependent: Dependents){
 
-    const dependentdDialogConfig = new MatDialogConfig();
-    dependentdDialogConfig.autoFocus = false;
-    dependentdDialogConfig.restoreFocus = false;
-    dependentdDialogConfig.data = {
+    const dependentDialogConfig = new MatDialogConfig();
+    dependentDialogConfig.autoFocus = false;
+    dependentDialogConfig.restoreFocus = false;
+    dependentDialogConfig.data = {
       dependentId: dependent.dependentId,
       dependentName: dependent.dependentName,
       dependentDOB: dependent.dependentDOB
   };
-    const dialogRef = this.matDialog.open(DependentDialogComponent, dependentdDialogConfig);
+    const dialogRef = this.matDialog.open(DependentDialogComponent, dependentDialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -114,6 +115,30 @@ export class MemberHomeComponent implements OnInit {
       }
     );
     }
+  }
+
+  submitClaim(member: Member){
+    const claimDialogConfig = new MatDialogConfig();
+    claimDialogConfig.autoFocus = false;
+    claimDialogConfig.restoreFocus = false;
+    claimDialogConfig.data = {
+      // dependentId: dependent.dependentId,
+      // dependentName: dependent.dependentName,
+      // dependentDOB: dependent.dependentDOB
+      memberId: member.memberId
+  };
+    const dialogRef = this.matDialog.open(ClaimDialogComponent, claimDialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      // this.showLoginButton = result;
+      // this.showSignupButton = result;
+      console.log(result)
+      if(result!= null && result!=undefined){
+        this.member = result;
+      }
+    });
+
   }
 
   getMemberDetails(memberId: string){

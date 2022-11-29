@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ClaimDialogComponent } from './claim-dialog/claim-dialog.component';
 import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'member-home/:member', component: MemberHomeComponent},
   {path: 'registration', component: RegistrationDialogComponent},
   {path: 'add-dependent', component: DependentDialogComponent},
+  {path: 'submit-claim', component: ClaimDialogComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 

@@ -55,6 +55,12 @@
     </div>
     </div>
 
+    
+
+    <div [align]="'center'">
+        <button mat-raised-button class="member-actions-submit-claim" color="warn" (click)="submitClaim(member)" [hidden]="!member.memberIsRegistered">Submit claim</button>
+    </div>
+
 
 
 
