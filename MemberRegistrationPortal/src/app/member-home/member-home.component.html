@@ -5,9 +5,9 @@
     </div>
 
     <div [align]="'center'">
-        <button mat-raised-button color="accent" (click)="memberRegister()" [disabled]="member.memberIsRegistered">Register</button>&nbsp;<br/>
-        <button mat-raised-button color="accent" (click)="updateMemberDetails()" [disabled]="!member.memberIsRegistered">Update my details</button>&nbsp;<br/>
-        <button mat-raised-button color="accent" (click)="addDependent()" [disabled]="!member.memberIsRegistered">Add Dependent</button>
+        <button mat-raised-button class="member-actions" color="accent" (click)="memberRegister()" [disabled]="member.memberIsRegistered">Register</button>
+        <button mat-raised-button class="member-actions" color="accent" (click)="updateMemberDetails()" [disabled]="!member.memberIsRegistered">Update my details</button>
+        <button mat-raised-button class="member-actions" color="accent" (click)="addDependent()" [disabled]="!member.memberIsRegistered">Add Dependent</button>
     </div>
 
 </div>

@@ -6,3 +6,13 @@ th, td {
 h1, h2, h3 {
     font-family: cursive;
   }
+
+.member-actions {
+    margin-right: 1vw;
+    margin-bottom: 5px;
+    /* background: #4285F4;
+    color: white;
+    font-size: 9px; */
+    height: auto;
+    width: 25%;
+}
