@@ -7,7 +7,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Dependent Name</mat-label>
-        <input formControlName="dependentName" matInput placeholder="Enter Dependent Name">
+        <input formControlName="dependentName" matInput placeholder="Enter Dependent Name" [readonly]="addOrUpdate()">
         <mat-error *ngIf="dependentForm.get('dependentName')?.hasError('required')">Dependent Name is required</mat-error>
         <mat-error *ngIf="dependentForm.get('dependentName')?.hasError('pattern')">Please provide a valid Dependent Name</mat-error>
     </mat-form-field>

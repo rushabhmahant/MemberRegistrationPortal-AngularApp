@@ -4,6 +4,7 @@ import { ClaimDialogComponent } from './claim-dialog/claim-dialog.component';
 import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
+import { MemberUpdateDialogComponent } from './member-update-dialog/member-update-dialog.component';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationDialogComponent},
   {path: 'add-dependent', component: DependentDialogComponent},
   {path: 'submit-claim', component: ClaimDialogComponent},
+  {path: 'member-update', component: MemberUpdateDialogComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 

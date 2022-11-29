@@ -166,6 +166,10 @@ export class DependentDialogComponent implements OnInit {
     return true;
   }
 
+  addOrUpdate(){
+    return this.performUpdate;
+  }
+
   exit(){
     this.dialogRef.close();
   }

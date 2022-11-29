@@ -24,6 +24,7 @@ import { RegistrationDialogComponent } from './registration-dialog/registration-
 import {MatSelectModule} from '@angular/material/select';
 import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
 import { ClaimDialogComponent } from './claim-dialog/claim-dialog.component';
+import { MemberUpdateDialogComponent } from './member-update-dialog/member-update-dialog.component';
 
 
 
@@ -38,7 +39,8 @@ import { ClaimDialogComponent } from './claim-dialog/claim-dialog.component';
     MemberHomeComponent,
     RegistrationDialogComponent,
     DependentDialogComponent,
-    ClaimDialogComponent
+    ClaimDialogComponent,
+    MemberUpdateDialogComponent
   ],
   imports: [
     BrowserModule,

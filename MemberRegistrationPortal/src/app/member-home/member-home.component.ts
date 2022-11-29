@@ -5,6 +5,7 @@ import { ClaimDialogComponent } from '../claim-dialog/claim-dialog.component';
 import { DependentDialogComponent } from '../dependent-dialog/dependent-dialog.component';
 import { Dependents } from '../dependents';
 import { Member } from '../member';
+import { MemberUpdateDialogComponent } from '../member-update-dialog/member-update-dialog.component';
 import { MemberService } from '../member.service';
 import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
 
@@ -48,7 +49,25 @@ export class MemberHomeComponent implements OnInit {
     });
   }
 
-  updateMemberDetails(){
+  updateMemberDetails(member: Member){
+    const updateMemberDialogConfig = new MatDialogConfig();
+    updateMemberDialogConfig.autoFocus = false;
+    updateMemberDialogConfig.restoreFocus = false;
+    updateMemberDialogConfig.data = {
+      //memberId: member.memberId
+      member: member
+  };
+    const dialogRef = this.matDialog.open(MemberUpdateDialogComponent, updateMemberDialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      // this.showLoginButton = result;
+      // this.showSignupButton = result;
+      console.log(result)
+      if(result!= null && result!=undefined){
+        this.member = result;
+      }
+    });
 
   }
 
