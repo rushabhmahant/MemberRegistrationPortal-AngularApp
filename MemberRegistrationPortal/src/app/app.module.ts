@@ -22,6 +22,7 @@ import { SignupComponent } from './signup/signup.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
+import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
 
 
 
@@ -34,7 +35,8 @@ import {MatSelectModule} from '@angular/material/select';
     LoginComponent,
     SignupComponent,
     MemberHomeComponent,
-    RegistrationDialogComponent
+    RegistrationDialogComponent,
+    DependentDialogComponent
   ],
   imports: [
     BrowserModule,

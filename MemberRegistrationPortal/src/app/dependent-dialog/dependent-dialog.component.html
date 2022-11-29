@@ -1,0 +1,32 @@
+<h1 *ngIf="!performUpdate; else update" mat-dialog-title>Add a Dependent</h1>
+<ng-template #update>
+    <h1 mat-dialog-title>Edit Dependent</h1>
+</ng-template>
+<div mat-dialog-content>
+<form [formGroup]="dependentForm">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Dependent Name</mat-label>
+        <input formControlName="dependentName" matInput placeholder="Enter Dependent Name">
+        <mat-error *ngIf="dependentForm.get('dependentName')?.hasError('required')">Dependent Name is required</mat-error>
+        <mat-error *ngIf="dependentForm.get('dependentName')?.hasError('pattern')">Please provide a valid Dependent Name</mat-error>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field class="section-full" appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input formControlName="dependentDOB" matInput [matDatepicker]="picker" [max]="maxDate" readonly>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="dependentForm.get('dependentDOB')?.hasError('required')">Date of birth is required</mat-error>
+    </mat-form-field>
+
+</form>
+
+<div mat-dialog-action [align]="'end'">
+    <button *ngIf="!performUpdate" mat-raised-button color="primary" (click)="addDependent()">Add</button>
+    <button *ngIf="performUpdate" mat-raised-button color="primary" (click)="updateDependent()">Update</button>
+    <button style="margin-left: 10px;" mat-raised-button color="warn" (click)="exit()" mat-dialog-close>Exit</button>
+</div>
+
+</div>

@@ -5,8 +5,8 @@
     </div>
 
     <div [align]="'center'">
-        <button mat-raised-button color="accent" (click)="memberRegister()" [disabled]="member.memberIsRegistered">Register</button>&nbsp;
-        <button mat-raised-button color="accent" (click)="updateMemberDetails()" [disabled]="!member.memberIsRegistered">Update my details</button>&nbsp;
+        <button mat-raised-button color="accent" (click)="memberRegister()" [disabled]="member.memberIsRegistered">Register</button>&nbsp;<br/>
+        <button mat-raised-button color="accent" (click)="updateMemberDetails()" [disabled]="!member.memberIsRegistered">Update my details</button>&nbsp;<br/>
         <button mat-raised-button color="accent" (click)="addDependent()" [disabled]="!member.memberIsRegistered">Add Dependent</button>
     </div>
 
@@ -36,11 +36,11 @@
                 <td>{{dependent.dependentDOB}}</td>
                 <td>{{dependent.dependentAge}}</td>
                 <td>
-                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="editDependent(dependent)">
                         <mat-icon>edit</mat-icon>
                     </button>
                     
-                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="removeDependent(dependent.dependentId)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
