@@ -4,6 +4,10 @@
         <h1 style="color: blueviolet;font-size: xx-large;">Sign up</h1>
     </div>
 
+    <div style="margin-bottom: 25px;">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="assets/signup.png" alt="..." width="100" />
+    </div>
+
 <form class="signup-form" [formGroup]="signupForm">
     <mat-form-field class="section-half" appearance="outline">
         <mat-label>First Name</mat-label>
@@ -53,12 +57,15 @@
           <mat-error *ngIf="!signupForm.get('confirmPassword')?.hasError('minlength') && signupForm.get('confirmPassword')?.hasError('pattern')">Password must contain atleast one uppercase, one numeric and one special character</mat-error>
     </mat-form-field>
 </form>
-</div>
 
-<div [align]="'center'">
+
+<div [align]="'center'" style="margin-top: 20px;">
     <button mat-raised-button color="primary" (click)="memberSignup()">Sign up</button>
 </div>
 
-<div class="text-center" style="margin-top: 20px;">
+<div class="text-center" style="margin-top: 20px;margin-bottom: 50px;">
     <h4>Already have an account? <a routerLink='/login'>Sign in</a></h4>
+</div>
+
+
 </div>

@@ -55,6 +55,13 @@
     </div>
     </div>
 
+    <div class="container" *ngIf="!member.memberIsRegistered" style="margin-bottom: 25px;margin-top: 25px;text-align: center;">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="assets/register.jfif" alt="..." width="400" />
+    </div>
+
+    <div class="container" *ngIf="member.memberIsRegistered && member.memberDependents != null && member.memberDependents.length==0" style="margin-bottom: 25px;margin-top: 25px;text-align: center;">
+        <img class="img-fluid rounded mb-4 mb-lg-0" src="assets/dependents.png" alt="..." width="400" />
+    </div>
     
 
     <div [align]="'center'">

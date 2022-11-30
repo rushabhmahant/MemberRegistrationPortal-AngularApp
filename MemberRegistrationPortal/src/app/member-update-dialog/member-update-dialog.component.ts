@@ -50,7 +50,7 @@ export class MemberUpdateDialogComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private matDialog: MatDialog,
     private countryService: CountryService, private dialogRef: MatDialogRef<MemberUpdateDialogComponent>,
-    private memberService: MemberService, private router: Router, @Inject(MAT_DIALOG_DATA) private data: any) { }
+    private memberService: MemberService, private router: Router, @Inject(MAT_DIALOG_DATA) private matDialogdata: any) { }
 
   ngOnInit(): void {
 
@@ -60,6 +60,7 @@ export class MemberUpdateDialogComponent implements OnInit {
         this.countries = data.Countries;
         this.state.reset();
         this.city.reset();
+        this.populateValues();
       },
       error => {
         console.log("Error while fetching countries")
@@ -92,13 +93,22 @@ export class MemberUpdateDialogComponent implements OnInit {
 
     });
 
-    if(this.data){
-      this.member = this.data.member;
+    
+
+  }
+
+  populateValues(){
+
+    if(this.matDialogdata){
+      this.member = this.matDialogdata.member;
       console.log(this.member);
       this.memberUpdateForm.get('memberEmailId')?.setValue(this.member.memberEmailId);
       this.memberUpdateForm.get('memberPAN')?.setValue(this.member.memberPAN);
-      this.memberUpdateForm.get('memberCountry')?.setValue(this.member.memberCountry);
-      this.memberUpdateForm.get('memberState')?.setValue(this.member.memberState);
+      var countryIdx = this.countries.findIndex(obj => obj.CountryName==this.member.memberCountry);
+      this.states=this.countries[countryIdx].States;
+      var stateIdx = this.states.findIndex(obj => obj.StateName==this.member.memberState);
+      this.memberUpdateForm.get('memberCountry')?.setValue(countryIdx.toString());
+      this.memberUpdateForm.get('memberState')?.setValue(stateIdx.toString());
       this.memberUpdateForm.get('memberContactNo')?.setValue(this.member.memberContactNo);
       this.memberUpdateForm.get('memberAddress')?.setValue(this.member.memberAddress);
     }
@@ -128,6 +138,59 @@ export class MemberUpdateDialogComponent implements OnInit {
 
   updateMember(){
 
+    if(this.inputValidations()){
+
+      if(this.member.memberId==null){
+        alert("Member id unavailable, please try again later");
+        return;
+      }
+
+          this.updateMemberDetails();
+
+    }
+    else{
+      alert("Please provide required inputs in correct format!\n\n" + 
+      "\u2022 Email Id must have @ and . characters.\n" +
+      "\u2022 Select country and state from the dropdown lists.\n" +
+      "\u2022 PAN must contain 12 alphanumeric characters.\n" +
+      "\u2022 Contact No. should be of 10 digits.\n" + 
+      "\u2022 Address should not exceed 80 characters.");
+    }
+
+  }
+
+  updateMemberDetails(){
+    this.member.memberEmailId = this.memberUpdateForm.get('memberEmailId')?.value;
+    this.member.memberPAN = this.memberUpdateForm.get('memberPAN')?.value;
+    this.member.memberCountry = this.countries[this.memberUpdateForm.get('memberCountry')?.value].CountryName;
+    this.member.memberState = this.states[this.memberUpdateForm.get('memberState')?.value].StateName;
+    this.member.memberContactNo = this.memberUpdateForm.get('memberContactNo')?.value;
+    this.member.memberAddress = this.memberUpdateForm.get('memberAddress')?.value;
+    this.memberService.updateMember(this.member.memberId, this.member).subscribe(
+      data => {
+        console.log(data);
+        alert("Member updated succesfully!");
+        this.dialogRef.close(this.member);
+      },
+      error => {
+        console.log(error);
+        if(error.error != undefined){
+          alert(error.error.errorMessage);
+        }
+        else{
+          alert("Unable to update member, please try again later");
+        }
+      }
+    );
+  }
+
+  inputValidations(){
+    if(this.memberUpdateForm.get('memberPAN')?.errors || this.memberUpdateForm.get('memberCountry')?.errors ||
+    this.memberUpdateForm.get('memberState')?.errors || this.memberUpdateForm.get('memberContactNo')?.errors ||
+    this.memberUpdateForm.get('memberAddress')?.errors || this.memberUpdateForm.get('memberEmailId')?.errors){
+      return false;
+    }
+    return true;
   }
 
   exit(){

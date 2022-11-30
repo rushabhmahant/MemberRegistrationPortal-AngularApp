@@ -35,7 +35,9 @@ export class MemberHomeComponent implements OnInit {
   memberRegister(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = false;
-
+    dialogConfig.data = {
+      member: this.member
+    };
     const dialogRef = this.matDialog.open(RegistrationDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,8 +1,11 @@
-<div class="container" style="margin-top: 25px;margin-bottom: 25px;text-align: center;">
+<h1 mat-dialog-title>Submit Claim</h1>
+<!-- <div class="container" style="margin-top: 25px;margin-bottom: 25px;text-align: center;"> -->
     
-    <div class="text-center" style="margin-bottom: 25px;">
+    <!-- <div class="text-center" style="margin-bottom: 25px;">
         <h1 style="color: blueviolet;font-size: xx-large;">Submit Claim</h1>
-    </div>
+    </div> -->
+
+
 
 <form class="claim-form" [formGroup]="claimForm">
     <mat-form-field appearance="fill">
@@ -62,7 +65,7 @@
     </mat-form-field>
     
 </form>
-</div>
+<!-- </div> -->
 
 <div mat-dialog-action [align]="'end'">
     <button mat-raised-button color="primary" (click)="submitClaim()">Submit Claim</button>

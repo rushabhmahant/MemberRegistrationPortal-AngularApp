@@ -43,4 +43,8 @@ export class MemberService {
       memberId + "/remove-dependent/" + dependentId);
   }
 
+  updateMember(memberId: string, member: Member): Observable<Member>{
+    return this.httpClient.post<Member>(this.baseUrl + "/member/" + member.memberId + "/update-member/", member)
+  }
+
 }

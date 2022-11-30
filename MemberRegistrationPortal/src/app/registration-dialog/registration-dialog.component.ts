@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CountryService } from '../country.service';
 import { Member } from '../member';
@@ -49,9 +49,13 @@ export class RegistrationDialogComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private matDialog: MatDialog,
     private countryService: CountryService, private dialogRef: MatDialogRef<RegistrationDialogComponent>,
-    private memberService: MemberService, private router: Router) { }
+    private memberService: MemberService, private router: Router,  @Inject(MAT_DIALOG_DATA) private matDialogdata: any) { }
 
   ngOnInit(): void {
+
+    if(this.matDialogdata){
+      this.member = this.matDialogdata.member;
+    }
 
     this.countryService.getAllCountries().subscribe(
       data => {
@@ -182,7 +186,7 @@ export class RegistrationDialogComponent implements OnInit {
 
   exit(){
     let showLoginButtons = true;
-    this.dialogRef.close(showLoginButtons);
+    this.dialogRef.close(this.member);
   }
 
 }
