@@ -8,7 +8,7 @@
 
 
 <form class="claim-form" [formGroup]="claimForm">
-    <mat-form-field appearance="fill">
+    <mat-form-field class="section-half" appearance="fill">
         <mat-label>Claim for</mat-label>
         <mat-select formControlName="dependent" (selectionChange)="onSelectDependent($event.value)">
           <mat-option value="self">Self</mat-option>
@@ -18,6 +18,7 @@
         </mat-select>
         <mat-error>Please select an option for submitting claim</mat-error>
     </mat-form-field>
+    &nbsp;
     <mat-form-field class="section-half" appearance="outline">
         <mat-label>First Name</mat-label>
         <input formControlName="firstName" matInput readonly>
@@ -28,7 +29,7 @@
         <input formControlName="lastName" matInput readonly>
     </mat-form-field>
     <br/>
-    <mat-form-field class="section-full" appearance="outline">
+    <mat-form-field class="section-half" appearance="outline">
         <mat-label>Date of Birth</mat-label>
         <input formControlName="dateOfBirth" matInput [matDatepicker]="dobpicker" [max]="maxDate" [disabled]="true">
         <mat-hint>MM/DD/YYYY</mat-hint>
@@ -44,6 +45,7 @@
         <mat-datepicker #doapicker></mat-datepicker>
         <mat-error *ngIf="claimForm.get('dateOfAdmission')?.hasError('required')">Date of admission is required</mat-error>
     </mat-form-field>
+    &nbsp;
     <mat-form-field class="section-full" appearance="outline">
         <mat-label>Date of Discharge</mat-label>
         <input formControlName="dateOfDischarge" matInput [matDatepicker]="dodpicker" [max]="maxDate" readonly>
@@ -52,12 +54,14 @@
         <mat-datepicker #dodpicker></mat-datepicker>
         <mat-error *ngIf="claimForm.get('dateOfDischarge')?.hasError('required')">Date of discharge is required</mat-error>
     </mat-form-field>
-    <mat-form-field class="section-half" appearance="outline">
+    &nbsp;
+    <mat-form-field class="section-full" appearance="outline">
         <mat-label>Provider Name</mat-label>
         <input formControlName="providerName" matInput placeholder="Enter Provider Name">
         <mat-error *ngIf="claimForm.get('providerName')?.hasError('required')">Provider name is required</mat-error>
     </mat-form-field>
-    <mat-form-field class="section-half" appearance="outline">
+    &nbsp;
+    <mat-form-field class="section-full" appearance="outline">
         <mat-label>Bill Amount</mat-label>
         <input formControlName="billAmount" matInput placeholder="Enter Bill Amount">
         <mat-error *ngIf="claimForm.get('billAmount')?.hasError('required')">Bill Amount is required</mat-error>

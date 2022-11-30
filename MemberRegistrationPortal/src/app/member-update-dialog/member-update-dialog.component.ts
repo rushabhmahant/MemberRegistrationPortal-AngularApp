@@ -41,7 +41,7 @@ export class MemberUpdateDialogComponent implements OnInit {
   member: Member = new Member();
 
   country = new FormControl(null, [Validators.required]);
-  state = new FormControl({ value: null, disabled: true }, [
+  state = new FormControl({ value: null, disabled: false }, [
     Validators.required,
   ]);
   city = new FormControl({ value: null, disabled: true }, [

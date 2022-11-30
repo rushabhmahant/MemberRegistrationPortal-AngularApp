@@ -83,6 +83,7 @@ export class DependentDialogComponent implements OnInit {
   saveMemberDetailsWithDependent(){
     this.newDependent.dependentName = this.dependentForm.get('dependentName')?.value;
     this.newDependent.dependentDOB = this.dependentForm.get('dependentDOB')?.value;
+    this.newDependent.dependentDOB.setDate(this.newDependent.dependentDOB.getDate() + 1);
     this.memberService.addDependent(this.member.memberId, this.newDependent).subscribe(
       data => {
         console.log(data);
@@ -140,6 +141,10 @@ export class DependentDialogComponent implements OnInit {
   editMemberDependent(){
     this.existingDependent.dependentName = this.dependentForm.get('dependentName')?.value;
     this.existingDependent.dependentDOB = this.dependentForm.get('dependentDOB')?.value;
+    //  Below condition check to match Angular Date with Java Date
+    if(this.existingDependent.dependentDOB.toString().length != 10){
+      this.existingDependent.dependentDOB.setDate(this.existingDependent.dependentDOB.getDate() + 1);
+    }
     this.memberService.editDependent(this.member.memberId, this.existingDependent).subscribe(
       data => {
         console.log(data);

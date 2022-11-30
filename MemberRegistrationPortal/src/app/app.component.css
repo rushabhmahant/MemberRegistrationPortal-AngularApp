@@ -6,6 +6,11 @@
     font-family: cursive;
   }
 
+.navbar-custom {
+    background-color:rgb(97, 9, 179);
+    font-family: cursive;
+}
+
 /* .mat-raised-button.mat-blue {
     color: white;
     background-color: orangered;

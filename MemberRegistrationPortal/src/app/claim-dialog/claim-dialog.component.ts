@@ -107,6 +107,8 @@ export class ClaimDialogComponent implements OnInit {
     this.claim.dateOfBirth = this.claimForm.get('dateOfBirth')?.value;
     this.claim.dateOfAdmission = this.claimForm.get('dateOfAdmission')?.value;
     this.claim.dateOfDischarge = this.claimForm.get('dateOfDischarge')?.value;
+    this.claim.dateOfAdmission.setDate(this.claim.dateOfAdmission.getDate() + 1);
+    this.claim.dateOfDischarge.setDate(this.claim.dateOfDischarge.getDate() + 1);
     this.claim.providerName = this.claimForm.get('providerName')?.value;
     this.claim.totalBillAmount = this.claimForm.get('billAmount')?.value;
 

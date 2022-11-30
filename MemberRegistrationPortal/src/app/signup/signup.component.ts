@@ -66,6 +66,7 @@ export class SignupComponent implements OnInit {
       this.newMember.memberFirstName = this.signupForm.get('memberFirstName')?.value;
       this.newMember.memberLastName = this.signupForm.get('memberLastName')?.value;
       this.newMember.memberDOB = this.signupForm.get('memberDOB')?.value;
+      this.newMember.memberDOB.setDate(this.newMember.memberDOB.getDate() + 1);
       this.newMember.memberEmailId = this.signupForm.get('memberEmailId')?.value;
       this.newMember.memberPassword = this.signupForm.get('memberPassword')?.value;
       
@@ -101,14 +102,9 @@ export class SignupComponent implements OnInit {
   }
 
   inputValidations(){
-    console.log(this.signupForm.get('memberFirstName')?.errors);
-    console.log(this.signupForm.get('memberLastName')?.errors);
-    console.log(this.signupForm.get('memberEmailId')?.errors);
-    console.log(this.signupForm.get('memberPassword')?.errors);
-    console.log(this.signupForm.get('confirmPassword')?.errors);
     if(this.signupForm.get('memberEmailId')?.errors || this.signupForm.get('memberPassword')?.errors ||
     this.signupForm.get('memberFirstName')?.errors || this.signupForm.get('memberLastName')?.errors ||
-    this.signupForm.get('confirmPassword')?.errors){
+    this.signupForm.get('confirmPassword')?.errors || this.signupForm.get('memberDOB')?.errors){
       return false;
     }
     return true;
