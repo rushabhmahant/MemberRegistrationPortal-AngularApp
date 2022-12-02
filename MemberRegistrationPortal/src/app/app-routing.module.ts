@@ -4,6 +4,7 @@ import { AuthGuard } from './auth.guard';
 import { ClaimDialogComponent } from './claim-dialog/claim-dialog.component';
 import { DependentDialogComponent } from './dependent-dialog/dependent-dialog.component';
 import { LoginComponent } from './login/login.component';
+import { MemberClaimsComponent } from './member-claims/member-claims.component';
 import { MemberHomeComponent } from './member-home/member-home.component';
 import { MemberUpdateDialogComponent } from './member-update-dialog/member-update-dialog.component';
 import { RegistrationDialogComponent } from './registration-dialog/registration-dialog.component';
@@ -21,6 +22,8 @@ const routes: Routes = [
   {path: 'submit-claim', component: ClaimDialogComponent, 
   canActivate: [AuthGuard]},
   {path: 'member-update', component: MemberUpdateDialogComponent, 
+  canActivate: [AuthGuard]},
+  {path: 'member-claims/:memberId', component: MemberClaimsComponent,
   canActivate: [AuthGuard]},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];

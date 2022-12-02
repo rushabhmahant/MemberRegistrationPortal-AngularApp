@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClaimDialogComponent } from '../claim-dialog/claim-dialog.component';
 import { DependentDialogComponent } from '../dependent-dialog/dependent-dialog.component';
 import { Dependents } from '../dependents';
 import { Member } from '../member';
+import { MemberClaimsComponent } from '../member-claims/member-claims.component';
 import { MemberUpdateDialogComponent } from '../member-update-dialog/member-update-dialog.component';
 import { MemberService } from '../member.service';
 import { RegistrationDialogComponent } from '../registration-dialog/registration-dialog.component';
@@ -20,7 +21,7 @@ export class MemberHomeComponent implements OnInit {
   selectedDependent!: Dependents;
 
   constructor(private activatedRoute: ActivatedRoute, private matDialog: MatDialog,
-    private memberService: MemberService) { }
+    private memberService: MemberService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -160,6 +161,28 @@ export class MemberHomeComponent implements OnInit {
       }
     });
 
+  }
+
+  memberClaims(member: Member){
+    // this.router.navigate(['member-claims', this.member.memberId]);
+    const claimsDialogConfig = new MatDialogConfig();
+    claimsDialogConfig.autoFocus = false;
+    claimsDialogConfig.restoreFocus = false;
+    claimsDialogConfig.data = {
+      // dependentId: dependent.dependentId,
+      // dependentName: dependent.dependentName,
+      // dependentDOB: dependent.dependentDOB
+      memberId: member.memberId
+  };
+    const dialogRef = this.matDialog.open(MemberClaimsComponent, claimsDialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      console.log(result)
+      if(result!= null && result!=undefined){
+        this.member = result;
+      }
+    });
   }
 
   getMemberDetails(memberId: string){

@@ -1,0 +1,46 @@
+<div style="margin-top: 20px;margin-bottom: 20px;">
+    <h2 class="text-center" style="color: blueviolet;">Here is the list of your Claims:</h2>
+    <div class="container">
+       <h5 *ngIf="memberClaims != null && memberClaims.length==0" style="color: red">Sorry {{member.memberFirstName}}, you have not submitted any claims!</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr *ngIf="memberClaims != null && memberClaims.length>0">
+                <th>Claim No.</th>
+                <th>Patient Id</th>
+                <th>Patient Name</th>
+                <th>Submitted By</th>
+                <th>Patient Date of Birth</th>
+                <!-- <th>Age</th> -->
+                <th>Date of Admission</th>
+                <th>Date of Discharge</th>
+                <th>Provider</th>
+                <th>Claimed amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let claim of memberClaims">
+                <td>{{claim.claimId}}</td>
+                <td>{{claim.dependentId == 'self' ? member.memberId : claim.dependentId}}</td>
+                <td>{{claim.firstName}} {{claim.lastName}}</td>
+                <td>{{member.memberFirstName}} {{member.memberLastName}}</td>
+                <td>{{claim.dateOfBirth}}</td>
+                <!-- <td>{{claim.age}}</td> -->
+                <td>{{claim.dateOfAdmission}}</td>
+                <td>{{claim.dateOfDischarge}}</td>
+                <td>{{claim.providerName}}</td>
+                <td><span>&#8377;</span>{{claim.totalBillAmount}}</td>
+                <td>In process</td>
+                <!-- <td>
+                    <button type="button" class="btn btn-info" (click)="goToUpdateOrderStatus(order.orderId, order.orderStatus)">Cancel</button>&nbsp;
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div mat-dialog-action style="margin-top: 25px;margin-right: 15px;" [align]="'end'">
+        <button style="margin-left: 10px;" mat-raised-button color="warn" (click)="goBack()" mat-dialog-close>Back</button>
+    </div> 
+
+    </div>

@@ -64,11 +64,13 @@
     </div>
     
 
-    <div style="margin-bottom: 50px;" [align]="'center'">
+    <div style="margin-bottom: 1px;" [align]="'center'">
         <button mat-raised-button class="member-actions-submit-claim" color="warn" (click)="submitClaim(member)" [hidden]="!member.memberIsRegistered">Submit claim</button>
     </div>
 
-
+    <div  style="margin-bottom: 50px;" [align]="'center'">
+        <button mat-raised-button class="member-actions-my-claims" color="primary" (click)="memberClaims(member)" [hidden]="!member.memberIsRegistered">My claims</button>
+    </div>
 
 
 
