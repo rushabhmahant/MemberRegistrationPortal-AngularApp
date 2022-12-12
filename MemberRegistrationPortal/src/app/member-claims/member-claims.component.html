@@ -1,7 +1,7 @@
 <div style="margin-top: 20px;margin-bottom: 20px;">
     <h2 class="text-center" style="color: blueviolet;">Here is the list of your Claims:</h2>
     <div class="container">
-       <h5 *ngIf="memberClaims != null && memberClaims.length==0" style="color: red">Sorry {{member.memberFirstName}}, you have not submitted any claims!</h5>
+       <h4 *ngIf="memberClaims != null && memberClaims.length==0" style="color: red">Sorry {{member.memberFirstName}}, you have not submitted any claims!</h4>
     <table class="table table-striped">
         <thead>
             <tr *ngIf="memberClaims != null && memberClaims.length>0">

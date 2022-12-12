@@ -17,7 +17,7 @@ export class DependentDialogComponent implements OnInit {
   newDependent: Dependents = new Dependents();  //  For adding new Dependent
   existingDependent: Dependents = new Dependents(); //  For updating existing dependent
 
-  namePattern = /^([a-zA-Z ])*$/;
+  namePattern = /^([a-zA-Z])*$/;
   maxDate = new Date();
 
   performUpdate: boolean = false;
@@ -29,7 +29,11 @@ export class DependentDialogComponent implements OnInit {
   ngOnInit(): void {
 
     this.dependentForm = this.formBuilder.group({
-      dependentName:['',[
+      dependentFirstName:['',[
+        Validators.required,
+        Validators.pattern(this.namePattern)
+      ]],
+      dependentLastName:['',[
         Validators.required,
         Validators.pattern(this.namePattern)
       ]],
@@ -40,7 +44,9 @@ export class DependentDialogComponent implements OnInit {
     if(this.data){
       this.performUpdate =  true;
       this.existingDependent.dependentId = this.data.dependentId;
-      this.dependentForm.get('dependentName')?.setValue(this.data.dependentName);
+      var name = this.data.dependentName.split(" ", 2)
+      this.dependentForm.get('dependentFirstName')?.setValue(name[0]);
+      this.dependentForm.get('dependentLastName')?.setValue(name[1]);
       this.dependentForm.get('dependentDOB')?.setValue(this.data.dependentDOB);
     }
 
@@ -81,7 +87,7 @@ export class DependentDialogComponent implements OnInit {
   }
 
   saveMemberDetailsWithDependent(){
-    this.newDependent.dependentName = this.dependentForm.get('dependentName')?.value;
+    this.newDependent.dependentName = this.dependentForm.get('dependentFirstName')?.value + " " + this.dependentForm.get('dependentLastName')?.value;
     this.newDependent.dependentDOB = this.dependentForm.get('dependentDOB')?.value;
     this.newDependent.dependentDOB.setDate(this.newDependent.dependentDOB.getDate() + 1);
     this.memberService.addDependent(this.member.memberId, this.newDependent).subscribe(
@@ -139,7 +145,7 @@ export class DependentDialogComponent implements OnInit {
   }
 
   editMemberDependent(){
-    this.existingDependent.dependentName = this.dependentForm.get('dependentName')?.value;
+    this.existingDependent.dependentName = this.dependentForm.get('dependentFirstName')?.value + " " + this.dependentForm.get('dependentLastName')?.value;
     this.existingDependent.dependentDOB = this.dependentForm.get('dependentDOB')?.value;
     //  Below condition check to match Angular Date with Java Date
     if(this.existingDependent.dependentDOB.toString().length != 10){
@@ -165,7 +171,7 @@ export class DependentDialogComponent implements OnInit {
   }
 
   inputValidations(){
-    if(this.dependentForm.get('dependentName')?.errors || this.dependentForm.get('dependentDOB')?.errors){
+    if(this.dependentForm.get('dependentFirstName')?.errors || this.dependentForm.get('dependentLastName')?.errors || this.dependentForm.get('dependentDOB')?.errors){
       return false;
     }
     return true;

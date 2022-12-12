@@ -12,7 +12,8 @@ export class MemberService {
 
   constructor(private httpClient: HttpClient) { }
 
-  baseUrl: string = "http://localhost:7001/api/v1/mrp";
+  //baseUrl: string = "http://localhost:7001/api/v1/mrp";
+  baseUrl: string = "http://Mrpmemberservice-env.eba-3g9iuhmq.ap-northeast-1.elasticbeanstalk.com/api/v1/mrp";
 
   login(member: Member): Observable<Member>{
     return this.httpClient.post<Member>(this.baseUrl + "/onboard/login", member);

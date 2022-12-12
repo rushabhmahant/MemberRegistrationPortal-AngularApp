@@ -5,14 +5,21 @@
 <div mat-dialog-content>
 <form [formGroup]="dependentForm">
 
-    <mat-form-field appearance="outline">
-        <mat-label>Dependent Name</mat-label>
-        <input formControlName="dependentName" matInput placeholder="Enter Dependent Name" [readonly]="addOrUpdate()">
-        <mat-error *ngIf="dependentForm.get('dependentName')?.hasError('required')">Dependent Name is required</mat-error>
-        <mat-error *ngIf="dependentForm.get('dependentName')?.hasError('pattern')">Please provide a valid Dependent Name</mat-error>
+    <mat-form-field class="section-half" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="dependentFirstName" matInput placeholder="Enter First Name" [readonly]="addOrUpdate()">
+        <mat-error *ngIf="dependentForm.get('dependentFirstName')?.hasError('required')">First name is required</mat-error>
+        <mat-error *ngIf="dependentForm.get('dependentFirstName')?.hasError('pattern')">Please provide a valid First Name</mat-error>
     </mat-form-field>
     &nbsp;
-    <mat-form-field class="section-full" appearance="outline">
+    <mat-form-field class="section-half" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="dependentLastName" matInput placeholder="Enter Last Name" [readonly]="addOrUpdate()">
+        <mat-error *ngIf="dependentForm.get('dependentLastName')?.hasError('required')">Last name is required</mat-error>
+        <mat-error *ngIf="dependentForm.get('dependentLastName')?.hasError('pattern')">Please provide a valid Last Name</mat-error>
+    </mat-form-field>
+    <br/>
+    <mat-form-field class="section-half" appearance="outline">
         <mat-label>Date of Birth</mat-label>
         <input formControlName="dependentDOB" matInput [matDatepicker]="picker" [max]="maxDate" readonly>
         <mat-hint>MM/DD/YYYY</mat-hint>

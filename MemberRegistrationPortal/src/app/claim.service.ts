@@ -11,7 +11,8 @@ export class ClaimService {
 
   constructor(private httpClient: HttpClient) { }
 
-  baseUrl: string = "http://localhost:7002/claimservices";
+  //baseUrl: string = "http://localhost:7002/claimservices";
+  baseUrl: string = "http://Mrpclaimservice-env.eba-wpmardru.ap-northeast-1.elasticbeanstalk.com/claimservices";
 
   getMemberClaims(memberId: string): Observable<Claim[]>{
     return this.httpClient.get<Claim[]>(this.baseUrl + "/get-member-claims/" + memberId);

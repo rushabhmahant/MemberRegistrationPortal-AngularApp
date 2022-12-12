@@ -17,7 +17,7 @@ export class CountryService {
   //private countryData = countrycitystatejson;
 
   getAllCountries(): Observable<any> {
-    return this.httpClient.get(this.url);
+    return this.httpClient.get("assets/countries-states-cities.json");
   }
 
   // getStatesByCountry(countryShotName: string) {
